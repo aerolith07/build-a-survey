@@ -15,7 +15,7 @@ const EditableRadio = ({
 }: EditableRadioProps) => (
   <SlideFade offsetY="-40px" in={!!value}>
     <RadioWrapper>
-      <Radio value={id} />
+      <Radio key={id} value={id} />
       <EditableLabel
         editable={editable}
         initialValue={value}

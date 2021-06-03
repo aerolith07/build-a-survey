@@ -4,8 +4,8 @@ import Image from 'next/image';
 import React from 'react';
 import { resetServerContext } from 'react-beautiful-dnd';
 
-import DraggingTesting from '../components/DraggingTesting';
-import ReactBeautifulDND from '../components/ReactBeautifulDND';
+// import DraggingTesting from '../components/DraggingTesting';
+// import ReactBeautifulDND from '../components/ReactBeautifulDND';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
           <code className={styles.code}>pages/index.js</code>
         </p>
 
-        <ReactBeautifulDND />
+        {/* <ReactBeautifulDND /> */}
 
       </main>
 

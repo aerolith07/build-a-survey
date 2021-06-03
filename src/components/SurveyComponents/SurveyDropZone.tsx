@@ -4,6 +4,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import Components from '../../lib/const/componentMap';
 import { useAppSelector } from '../../state/store';
+import Question from './templates/Question';
 
 const renderQuizComponents = (order: any, questions: any) => order.map(({
   type,
@@ -14,18 +15,20 @@ const renderQuizComponents = (order: any, questions: any) => order.map(({
   return (
     <Draggable key={id} draggableId={id} index={index}>
       {(dragProvided) => (
-        <DraggableQuestion
+        <div
           className="question"
           ref={dragProvided.innerRef}
           {...dragProvided.draggableProps}
           {...dragProvided.dragHandleProps}
         >
-          <QuestionComponent
-            editable
-            id={id}
-            {...question}
-          />
-        </DraggableQuestion>
+          <Question>
+            <QuestionComponent
+              editable
+              id={id}
+              {...question}
+            />
+          </Question>
+        </div>
       )}
     </Draggable>
   );
@@ -41,7 +44,6 @@ const SurveyDropZone = () => {
       <Droppable droppableId="surveyDropZone">
         {(dropProvided) => (
           <DroppableArea ref={dropProvided.innerRef} {...dropProvided.droppableProps}>
-
             {order.length > 0 ? renderQuizComponents(order, questions) : renderDropZone()}
             {dropProvided.placeholder}
           </DroppableArea>

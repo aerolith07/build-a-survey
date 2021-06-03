@@ -1,6 +1,6 @@
-import CheckboxQuestion from '../../components/SurveyComponents/questions/CheckboxQuestion';
-import InputQuestion from '../../components/SurveyComponents/questions/InputQuestion';
-import RadioQuestion from '../../components/SurveyComponents/questions/RadioQuestion';
+import CheckboxQuestion from '../../components/SurveyComponents/organisms/CheckboxQuestion';
+import InputQuestion from '../../components/SurveyComponents/organisms/InputQuestion';
+import RadioQuestion from '../../components/SurveyComponents/organisms/RadioQuestion';
 
 const Components = {
   radio: RadioQuestion,
