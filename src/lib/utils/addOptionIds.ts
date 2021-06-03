@@ -1,18 +1,18 @@
 import { nanoid } from '@reduxjs/toolkit';
 
-type ContentType = {
-  title: string,
-  subheading: string,
-  options: {value: string}[]
+type OptionType = {
+    value?: string
 }
 
-const addOptionIds = (content: ContentType) => {
-  const options = content.options.map((option) => ({
-    id: nanoid(),
-    value: option.value,
-  }));
-
-  return { ...content, options };
+const addOptionIds = (options: OptionType[]) => {
+  if (options) {
+    const optionsWithId = options.map((option) => ({
+      id: nanoid(),
+      value: option.value,
+    }));
+    return optionsWithId;
+  }
+  return options;
 };
 
 export default addOptionIds;

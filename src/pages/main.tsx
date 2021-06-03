@@ -2,6 +2,7 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import { DragDropContext, DropResult, resetServerContext } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import SettingsBar from '../components/molecules/SettingsBar';
 import QuestionDrawer from '../components/SurveyComponents/QuestionDrawer';
 import SurveyDropZone from '../components/SurveyComponents/SurveyDropZone';
 import { addQuestion, removeQuestion } from '../lib/utils/addQuestion';
@@ -60,7 +61,9 @@ const main = () => {
             <QuestionDrawer />
           </QuestionDrawerWrapper>
           <FormBuilder className="form-builder">
-            <SettingsHeader className="settings">Settings</SettingsHeader>
+            <SettingsHeader className="settings">
+              <SettingsBar />
+            </SettingsHeader>
             <SurveyDropZoneWrapper>
               <SurveyDropZone />
             </SurveyDropZoneWrapper>
@@ -88,6 +91,7 @@ const QuestionDrawerWrapper = styled.div`
   flex-basis: 20%;
   flex-grow: 0;
   max-width: 20%;
+  min-width: calc(200px + 1rem)
 `;
 
 const SurveyDropZoneWrapper = styled.div`
