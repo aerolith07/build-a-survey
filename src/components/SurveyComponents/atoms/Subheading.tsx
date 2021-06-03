@@ -30,7 +30,7 @@ const EditableSubheading = ({ subheading, editable, setSubheading }: EditableSub
   }
 
   return (
-    <Heading {...subheadingProps} padding="3px" paddingLeft="0px" lineHeight="30px">
+    <Heading {...subheadingProps}>
       {subheading}
     </Heading>
   );

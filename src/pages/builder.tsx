@@ -61,16 +61,6 @@ const surveyBuilder = () => {
   );
 };
 
-// {
-// combine: null
-// destination: { droppableId: "surveyDropZone", index: 1 }
-// draggableId: "12313132213"
-// mode: "FLUID"
-// reason: "DROP"
-// source: { index: 0, droppableId: "questionDrawer" }
-// type: "DEFAULT"
-// }
-
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;

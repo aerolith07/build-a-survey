@@ -31,7 +31,7 @@ const EditableTitle = ({
   }
 
   return (
-    <Heading {...titleProps} padding="0px 3px 3px">
+    <Heading {...titleProps}>
       {title}
     </Heading>
   );

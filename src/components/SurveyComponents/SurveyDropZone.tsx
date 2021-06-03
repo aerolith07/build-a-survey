@@ -40,22 +40,19 @@ const SurveyDropZone = () => {
   const { questions, order } = useAppSelector((state) => state.survey);
 
   return (
-    <SurveyDropZoneWrapper>
-      <Droppable droppableId="surveyDropZone">
-        {(dropProvided) => (
-          <DroppableArea ref={dropProvided.innerRef} {...dropProvided.droppableProps}>
-            {order.length > 0 ? renderQuizComponents(order, questions) : renderDropZone()}
-            {dropProvided.placeholder}
-          </DroppableArea>
-        )}
-      </Droppable>
-
-    </SurveyDropZoneWrapper>
+    <Droppable droppableId="surveyDropZone">
+      {(dropProvided) => (
+        <DroppableArea ref={dropProvided.innerRef} {...dropProvided.droppableProps}>
+          {order.length > 0 ? renderQuizComponents(order, questions) : renderDropZone()}
+          {dropProvided.placeholder}
+        </DroppableArea>
+      )}
+    </Droppable>
   );
 };
 
 const DropZone = styled.div`
-display: flex;
+  display: flex;
   width:100%;
   height: 100%;
 `;
@@ -64,23 +61,6 @@ const DroppableArea = styled.div`
   .question {
     margin-bottom: 10px;
   }
-`;
-
-const DraggableQuestion = styled.div`
-  padding:20px;
-  background: white;
-  width: 100%;
-  border-radius: 10px;
-  border:  2px dashed #b8b8dd;
-`;
-
-const SurveyDropZoneWrapper = styled.div`
-  width: 80%;
-  height: 100vh;
-  margin-top: 30px;
-  margin: 20px;
-  border-style: dashed;
-  border-radius: 10px;
 `;
 
 export default SurveyDropZone;
