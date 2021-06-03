@@ -3,7 +3,7 @@ import { AppProps } from 'next/app';
 import '../styles/globals.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider as ReduxProvider } from 'react-redux';
-import { store } from '../app/store';
+import { store } from '../state/store';
 
 function App({ Component, pageProps }: AppProps) {
   return (

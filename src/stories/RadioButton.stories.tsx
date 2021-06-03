@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
 import { Button } from './Button';
-import RadioButtonQ from '../components/SurveyComponents/RadioButton';
+import RadioButtonQ from '../components/SurveyComponents/questions/RadioQuestion';
 
 export default {
   title: 'Example/Button',

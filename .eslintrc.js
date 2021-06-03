@@ -4,8 +4,9 @@ module.exports = {
     es2021: true,
   },
   extends: [
+    'eslint:recommended',
+    'airbnb',
     'plugin:react/recommended',
-    "react-app",
     'plugin:import/typescript',
   ],
   parser: '@typescript-eslint/parser',
@@ -59,5 +60,8 @@ module.exports = {
         devDependencies: true,
       },
     ],
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
   },
 };
