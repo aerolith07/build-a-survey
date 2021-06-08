@@ -4,13 +4,15 @@ import { DragDropContext, DropResult, resetServerContext } from 'react-beautiful
 import styled from 'styled-components';
 import SettingsBar from '../components/molecules/SettingsBar';
 import QuestionDrawer from '../components/SurveyComponents/QuestionDrawer';
-import SurveyDropZone from '../components/SurveyComponents/SurveyDropZone';
+import FromBuilder from '../components/SurveyComponents/wrappers/FormBuilderWrapper';
+import useExitPrompt from '../lib/hooks/useExitPrompts';
 import { addQuestion, removeQuestion } from '../lib/utils/addQuestion';
 import { useAppDispatch, useAppSelector } from '../state/store';
 import { reorderQuestion } from '../state/surveyQuestions/order/orderAction';
 
 const main = () => {
   const { order } = useAppSelector((state) => state.survey);
+  useExitPrompt(true);
 
   const dispatch = useAppDispatch();
   const onDragEnd = (result: DropResult) => {
@@ -54,25 +56,21 @@ const main = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div>
+      <Screen>
         <Header>Header</Header>
-        <MainBody className="main-body">
-          <QuestionDrawerWrapper className="question-drawer">
-            <QuestionDrawer />
-          </QuestionDrawerWrapper>
-          <FormBuilder className="form-builder">
-            <SettingsHeader className="settings">
-              <SettingsBar />
-            </SettingsHeader>
-            <SurveyDropZoneWrapper>
-              <SurveyDropZone />
-            </SurveyDropZoneWrapper>
-          </FormBuilder>
+        <SettingsBar />
+        <MainBody>
+          <QuestionDrawer />
+          <FromBuilder />
         </MainBody>
-      </div>
+      </Screen>
     </DragDropContext>
   );
 };
+
+const Screen = styled.div`
+overflow-y: none
+`;
 
 const Header = styled.header`
   background: #0E79B2;
@@ -82,33 +80,7 @@ const Header = styled.header`
 
 const MainBody = styled.div`
   display: flex;
-  height: calc(100vh - 3rem);
-`;
-
-const QuestionDrawerWrapper = styled.div`
-  background: #191923;
-  padding: 1rem;
-  flex-basis: 20%;
-  flex-grow: 0;
-  max-width: 20%;
-  min-width: calc(200px + 1rem)
-`;
-
-const SurveyDropZoneWrapper = styled.div`
-  overflow-y: scroll;
   height: calc(100vh - 6rem);
-  padding: 20px;
-`;
-
-const FormBuilder = styled.div`
-  background: white;
-  flex-basis: 80%;
-`;
-
-const SettingsHeader = styled.div`
-  color: white;
-  background: #0C6697;
-  padding:0.5rem;
 `;
 
 export default main;
