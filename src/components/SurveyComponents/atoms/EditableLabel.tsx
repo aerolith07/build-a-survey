@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
 const EditableLabel = ({
   initialValue,
@@ -60,7 +61,7 @@ const EditableLabel = ({
 
   const renderInput = () => (
     <div>
-      <input
+      <Input
         type="text"
         value={value}
         ref={textInput}
@@ -83,6 +84,10 @@ const EditableLabel = ({
 
   return view === 'label' ? renderLabel() : renderInput();
 };
+
+const Input = styled.input`
+  width: 100%;
+`;
 
 EditableLabel.propTypes = {
   initialValue: PropTypes.string.isRequired,

@@ -10,7 +10,7 @@ type AllInputProps = {
   id: string
 }
 
-type EditableInputOptionsProps<InputTypeProps> = {
+type ChoiceInputGroupProps<InputTypeProps> = {
   Input: any
   options: (InputTypeProps & AllInputProps)[]
   addOption: () => void
@@ -19,10 +19,10 @@ type EditableInputOptionsProps<InputTypeProps> = {
   editable: boolean
 }
 
-function EditableInputOptions<T>({
+function ChoiceInputGroup<T>({
   options, Input, addOption, removeOption, setOption, editable,
 }:
-  EditableInputOptionsProps<T>) {
+  ChoiceInputGroupProps<T>) {
   const canRemove = options.length > MIN_OPTIONS;
   const canAdd = options.length < MAX_OPTIONS;
 
@@ -35,26 +35,30 @@ function EditableInputOptions<T>({
 
   return (
     <>
-      {options.map(({ value, id }) => (
-        <Input
-          key={id}
-          id={id}
-          value={value}
-          editable={editable}
-          setOption={setOption}
-        />
-      ))}
-      {editable
-        ? (
-          <>
-            <IconButton size="xs" aria-label="Add Radio Option" isDisabled={!canAdd} variant="outline" mt="2" mr="2" colorScheme="green" icon={<AddIcon />} onClick={addOption} />
-            <IconButton size="xs" aria-label="Remove Radio Options" isDisabled={!canRemove} variant="outline" mt="2" colorScheme="red" icon={<MinusIcon />} onClick={handleRemoveOption} />
-          </>
-        )
-        : null}
+      <>
+        {options.map(({ value, id }) => (
+          <Input
+            key={id || value}
+            id={id}
+            value={value}
+            editable={editable}
+            setOption={setOption}
+          />
+        ))}
+      </>
+      {
+        editable
+          ? (
+            <>
+              <IconButton size="xs" aria-label="Add Radio Option" isDisabled={!canAdd} variant="outline" mt="2" mr="2" colorScheme="green" icon={<AddIcon />} onClick={addOption} />
+              <IconButton size="xs" aria-label="Remove Radio Options" isDisabled={!canRemove} variant="outline" mt="2" colorScheme="red" icon={<MinusIcon />} onClick={handleRemoveOption} />
+            </>
+          )
+          : null
+      }
 
     </>
   );
 }
 
-export default EditableInputOptions;
+export default ChoiceInputGroup;

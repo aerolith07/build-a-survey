@@ -35,7 +35,8 @@ function createBuilderCallback<T>(type: Questions) {
 
     builder.addCase(actions.addQuestion, (state, { payload }) => {
       const radioQuestion = defaults[type].content;
-      state[payload.id] = addOptionIds(radioQuestion);
+      const options = addOptionIds(radioQuestion.options);
+      state[payload.id] = { ...radioQuestion, options };
     });
 
     builder.addCase(actions.removeQuestion, (state, { payload }) => {

@@ -5,10 +5,10 @@ type DefaultQuestions = {
     type: string,
     content: {
       title: string,
-      subheading: string,
-      options: { value: string, id?: string}[]
+      subheading?: string,
+      options?: { value: string, id?: string}[]
     }
-    optionPrefix:string
+    optionPrefix?:string
   }
 }
 
@@ -40,6 +40,18 @@ const defaultQuestions: DefaultQuestions = {
       options: [{ value: '' }],
     },
     optionPrefix: '',
+  },
+  title: {
+    type: 'title',
+    content: {
+      title: 'Title',
+    },
+  },
+  subheading: {
+    type: 'subheading',
+    content: {
+      title: 'Description',
+    },
   },
 };
 
