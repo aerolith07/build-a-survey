@@ -2,7 +2,8 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import { DragDropContext, DropResult, resetServerContext } from 'react-beautiful-dnd';
 import styled from 'styled-components';
-import SettingsBar from '../components/molecules/SettingsBar';
+import Header from '../components/organisms/Header';
+import SettingsBar from '../components/organisms/SettingsBar';
 import QuestionDrawer from '../components/SurveyComponents/QuestionDrawer';
 import FromBuilder from '../components/SurveyComponents/wrappers/FormBuilderWrapper';
 import useExitPrompt from '../lib/hooks/useExitPrompts';
@@ -57,7 +58,7 @@ const main = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Screen>
-        <Header>Header</Header>
+        <Header />
         <SettingsBar />
         <MainBody>
           <QuestionDrawer />
@@ -70,12 +71,6 @@ const main = () => {
 
 const Screen = styled.div`
 overflow-y: none
-`;
-
-const Header = styled.header`
-  background: #0E79B2;
-  color: white;
-  padding: 1rem;
 `;
 
 const MainBody = styled.div`

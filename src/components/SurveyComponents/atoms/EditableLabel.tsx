@@ -49,14 +49,14 @@ const EditableLabel = ({
   };
 
   const renderLabel = () => (
-    <span
+    <Label
       className={labelClass !== undefined ? labelClass : ''}
       onClick={() => {
         setView('text');
       }}
     >
       {value}
-    </span>
+    </Label>
   );
 
   const renderInput = () => (
@@ -86,6 +86,10 @@ const EditableLabel = ({
 };
 
 const Input = styled.input`
+  width: 100%;
+`;
+
+const Label = styled.div`
   width: 100%;
 `;
 
