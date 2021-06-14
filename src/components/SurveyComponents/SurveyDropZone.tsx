@@ -6,31 +6,34 @@ import Components from '../../lib/const/componentMap';
 import { useAppSelector } from '../../state/store';
 import Question from './templates/Question';
 
-const renderQuizComponents = (order: any, questions: any) => order.map(({
+const renderQuizComponents = (order: any, questions: any, editable: boolean) => order.map(({
   type,
   id,
 }: any, index: number) => {
   const questionProps = questions[type][id];
   const QuestionComponent = Components[type];
   return (
-    <Draggable key={id} draggableId={id} index={index}>
-      {(dragProvided) => (
-        <div
-          className="question"
-          ref={dragProvided.innerRef}
-          {...dragProvided.draggableProps}
-          {...dragProvided.dragHandleProps}
-        >
-          <Question>
-            <QuestionComponent
-              editable
-              id={id}
-              {...questionProps}
-            />
-          </Question>
-        </div>
-      )}
-    </Draggable>
+    <>
+      <Draggable key={id} draggableId={id} index={index}>
+        {(dragProvided) => (
+          <div
+            className="question"
+            ref={dragProvided.innerRef}
+            {...dragProvided.draggableProps}
+            {...dragProvided.dragHandleProps}
+          >
+            <Question editable={editable}>
+              <QuestionComponent
+                editable={editable}
+                id={id}
+                {...questionProps}
+              />
+            </Question>
+          </div>
+        )}
+      </Draggable>
+      <DropZone />
+    </>
   );
 });
 
@@ -38,12 +41,13 @@ const renderDropZone = () => (<DropZone><Heading p="50px" borderRadius="10" w="1
 
 const SurveyDropZone = () => {
   const { questions, order } = useAppSelector((state) => state.survey);
+  const editable = useAppSelector((state) => !state.app.preview);
 
   return (
     <Droppable droppableId="surveyDropZone">
       {(dropProvided) => (
         <DroppableArea ref={dropProvided.innerRef} {...dropProvided.droppableProps}>
-          {order.length > 0 ? renderQuizComponents(order, questions) : renderDropZone()}
+          {order.length > 0 ? renderQuizComponents(order, questions, editable) : renderDropZone()}
           {dropProvided.placeholder}
         </DroppableArea>
       )}

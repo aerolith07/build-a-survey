@@ -1,5 +1,5 @@
 import { Input } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export type EditableInputProps = {
   value: string,
@@ -11,14 +11,24 @@ export type EditableInputProps = {
 const EditableInput = ({
   value, id, editable, setOption,
 }: EditableInputProps) => {
-  // const [placeholderValue, setPlaceholderValue] = useState('');
+  const [tempValue, setTempValue] = useState('');
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (editable) {
+      setOption(id, e.target.value);
+    } else {
+      setTempValue(e.target.value);
+    }
+  };
 
-  const handleChange = (e) => setOption(id, e.target.value);
+  useEffect(() => {
+    setTempValue('');
+  }, [editable]);
+
   return (
     <Input
       id={id}
       mb="10px"
-      value={value}
+      value={editable ? value : tempValue}
       placeholder={editable ? 'Enter placeholder text - blank for no placeholder' : value}
       onChange={handleChange}
     />

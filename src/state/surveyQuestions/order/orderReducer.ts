@@ -1,11 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 import Questions from '../../../lib/const/Questions';
-import { addQuestionToOrder, removeQuestionFromOrder, reorderQuestion } from './orderAction';
-
-type orderEntry = {
-  id: string,
-  type: keyof typeof Questions,
-}
+import {
+  addQuestionToOrder, initOrder, orderEntry, removeQuestionFromOrder, reorderQuestion,
+} from './orderAction';
 
 const initialState: orderEntry[] = [
 ];
@@ -27,6 +24,8 @@ const orderReducer = createReducer(initialState, (builder) => {
     state.splice(payload.removeIndex, 1);
     state.splice(payload.insertIndex, 0, question);
   });
+
+  builder.addCase(initOrder, (_, { payload }) => payload);
 });
 
 export default orderReducer;

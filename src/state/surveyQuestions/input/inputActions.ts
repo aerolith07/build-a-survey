@@ -1,5 +1,13 @@
 import { createAction, nanoid } from '@reduxjs/toolkit';
 
+export type inputOptionType = {
+  [id: string]: {
+    title: string,
+    subheading:string,
+    options: Array<{id: string, value: string}>
+  }
+}
+
 export const setTitle = createAction<{id: string, value: string}>('input/setTitle');
 export const setSubheading = createAction<{id: string, value: string}>('input/setSubheading');
 export const addOption = createAction('input/addOption', ({ id }) => (
@@ -11,3 +19,4 @@ export const setOption = createAction('input/setOption', ({ questionId, optionId
 export const removeOption = createAction<{id: string}>('input/removeOption');
 export const addQuestion = createAction<{id: string}>('input/addQuestion');
 export const removeQuestion = createAction<{id: string}>('input/removeQuestion');
+export const initQuestion = createAction<{[key: string]: inputOptionType}>('input/initQuestion');

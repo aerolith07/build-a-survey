@@ -1,18 +1,9 @@
-import { createReducer, nanoid } from '@reduxjs/toolkit';
+import { createReducer } from '@reduxjs/toolkit';
 import * as actions from './titleAction';
 import defaults from '../../../lib/const/defaultQuestions';
+import { titleType } from './titleAction';
 
-type titleType = {
-  [id: string]: {
-    title: string,
-  }
-}
-
-const initialState: titleType = {
-  // [nanoid()]: {
-  //   title: 'string',
-  // },
-};
+const initialState: titleType = {};
 
 const titleReducer = createReducer(initialState, (builder) => {
   builder.addCase(actions.setTitle, (state, { payload }) => {
@@ -27,5 +18,7 @@ const titleReducer = createReducer(initialState, (builder) => {
   builder.addCase(actions.removeComponent, (state, { payload }) => {
     delete state[payload.id];
   });
+
+  builder.addCase(actions.initComponent, (_, { payload }) => payload);
 });
 export default titleReducer;

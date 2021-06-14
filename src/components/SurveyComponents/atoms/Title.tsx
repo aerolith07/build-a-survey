@@ -5,11 +5,12 @@ import EditableLabel from './EditableLabel';
 type EditableTitleProps = {
   title: string,
   editable?: boolean,
-  setTitle(value: string): void
+  setTitle(value: string): void,
+  additionalTitleProps?: { [key: string]: any }
 }
 
 const EditableTitle = ({
-  title, editable, setTitle,
+  title, editable, setTitle, additionalTitleProps,
 }: EditableTitleProps) => {
   const titleProps = {
     fontSize: 'xl',
@@ -20,7 +21,7 @@ const EditableTitle = ({
 
   if (editable) {
     return (
-      <Heading {...titleProps}>
+      <Heading {...titleProps} {...additionalTitleProps}>
         <EditableLabel
           editable={editable}
           initialValue={title}
@@ -31,7 +32,7 @@ const EditableTitle = ({
   }
 
   return (
-    <Heading {...titleProps}>
+    <Heading {...titleProps} {...additionalTitleProps}>
       {title}
     </Heading>
   );
@@ -39,6 +40,7 @@ const EditableTitle = ({
 
 EditableTitle.defaultProps = {
   editable: false,
+  additionalTitleProps: {},
 };
 
 export default EditableTitle;

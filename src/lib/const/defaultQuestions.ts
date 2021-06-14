@@ -1,13 +1,15 @@
 import Questions from './Questions';
 
+interface QuestionContent {
+  title: string,
+  subheading?: string,
+  options?: { value: string, id?: string}[]
+}
+
 type DefaultQuestions = {
   [key in keyof typeof Questions]: {
     type: string,
-    content: {
-      title: string,
-      subheading?: string,
-      options?: { value: string, id?: string}[]
-    }
+    content: QuestionContent
     optionPrefix?:string
   }
 }

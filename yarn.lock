@@ -1108,6 +1108,11 @@
   resolved "http://bvrprdnex001.iggroup.local:8081/nexus/content/groups/npm-all/@types/lodash/-/lodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
   integrity sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==
 
+"@types/luxon@^1.27.0":
+  version "1.27.0"
+  resolved "http://bvrprdnex001.iggroup.local:8081/nexus/content/groups/npm-all/@types/luxon/-/luxon-1.27.0.tgz#1e3b5a7f8ca6944349c43498b4442b742c71ab0b"
+  integrity sha512-rr2lNXsErnA/ARtgFn46NtQjUa66cuwZYeo/2K7oqqxhJErhXgHBPyNKCo+pfOC3L7HFwtao8ebViiU9h4iAxA==
+
 "@types/node@*", "@types/node@^15.6.1":
   version "15.6.1"
   resolved "http://bvrprdnex001.iggroup.local:8081/nexus/content/groups/npm-all/@types/node/-/node-15.6.1.tgz#32d43390d5c62c5b6ec486a9bc9c59544de39a08"
@@ -3903,6 +3908,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+luxon@^1.27.0:
+  version "1.27.0"
+  resolved "http://bvrprdnex001.iggroup.local:8081/nexus/content/groups/npm-all/luxon/-/luxon-1.27.0.tgz#ae10c69113d85dab8f15f5e8390d0cbeddf4f00f"
+  integrity sha512-VKsFsPggTA0DvnxtJdiExAucKdAnwbCCNlMM5ENvHlxubqWd0xhZcdb4XgZ7QFNhaRhilXCFxHuoObP5BNA4PA==
+
 make-dir@^2.0.0:
   version "2.1.0"
   resolved "http://bvrprdnex001.iggroup.local:8081/nexus/content/groups/npm-all/make-dir/-/make-dir-2.1.0.tgz#5f0310e18b8be898cc07009295a30ae41e91e6f5"
@@ -4062,6 +4072,11 @@ mkdirp@^0.5.1, mkdirp@^0.5.3:
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
   dependencies:
     minimist "^1.2.5"
+
+moment@^2.29.1:
+  version "2.29.1"
+  resolved "http://bvrprdnex001.iggroup.local:8081/nexus/content/groups/npm-all/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

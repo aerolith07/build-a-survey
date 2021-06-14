@@ -1,12 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import * as actions from './subheadingAction';
 import defaults from '../../../lib/const/defaultQuestions';
-
-type titleType = {
-  [id: string]: {
-    title: string,
-  }
-}
+import { titleType } from './subheadingAction';
 
 const initialState: titleType = {};
 
@@ -23,5 +18,7 @@ const titleReducer = createReducer(initialState, (builder) => {
   builder.addCase(actions.removeComponent, (state, { payload }) => {
     delete state[payload.id];
   });
+
+  builder.addCase(actions.initComponent, (state, { payload }) => payload);
 });
 export default titleReducer;

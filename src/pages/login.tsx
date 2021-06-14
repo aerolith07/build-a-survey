@@ -5,6 +5,7 @@ import FormField from '../components/atoms/FormField';
 import PasswordInput from '../components/atoms/PasswordInput';
 import Form from '../components/molecules/Form';
 import { loginUser } from '../lib/api/userApi';
+import { login } from '../state/appState/appReducers';
 
 const loginPage = () => {
   const router = useRouter();
@@ -21,7 +22,8 @@ const loginPage = () => {
     if (username && password) {
       const { success, ...responseData } = await loginUser({ username, password });
       if (success) {
-        router.push('/main');
+        login();
+        router.push('/mySurveys');
       } else {
         setErrorMessage(responseData.message ? responseData.message : 'Unable to login');
       }
@@ -55,8 +57,7 @@ const Screen = styled.div`
   margin: auto;
   height: 100vh;
 
-background: linear-gradient(90deg, rgba(36,149,103,1) 0%, rgba(62,240,23,1) 100%);
-background: linear-gradient(40deg, #2f2495 0%, rgba(23,150,240,1) 100%);
+  background: linear-gradient(40deg, #2f2495 0%, rgba(23,150,240,1) 100%);
 
 `;
 

@@ -18,6 +18,7 @@ const TitleComponent = ({
   <>
     {title && (
       <Title
+        additionalTitleProps={{ fontSize: '3xl' }}
         editable={editable}
         setTitle={(value) => setTitle({ id, value })}
         title={title}

@@ -41,8 +41,8 @@ const Form = ({
         })
       }
       { errorMessage && <ErrorBox message={errorMessage} />}
-      <Button colorScheme="blue" mt="2rem" w="100%" type="submit">
-        {loading ? <LoadingSpinner /> : submitText}
+      <Button isLoading={loading} colorScheme="blue" mt="2rem" w="100%" type="submit">
+        {submitText}
       </Button>
       {secondaryActionText && secondaryActionHandler
         && <Button onClick={secondaryActionHandler} variant="ghost" mt="1rem" w="100%">{secondaryActionText}</Button>}
@@ -59,16 +59,6 @@ Form.defaultProps = {
   secondaryActionHandler: undefined,
 
 };
-
-const LoadingSpinner = () => (
-  <Spinner
-    thickness="4px"
-    speed="0.65s"
-    emptyColor="blue.200"
-    color="white.500"
-    size="md"
-  />
-);
 
 const FormWrapper = styled.form`
   align-self: center;

@@ -1,8 +1,8 @@
 import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
+import defaults from '../../../lib/const/defaultQuestions';
 import Questions from '../../../lib/const/Questions';
 import addOptionIds from '../../../lib/utils/addOptionIds';
 import getActions from './anyInputActions';
-import defaults from '../../../lib/const/defaultQuestions';
 
 function createBuilderCallback<T>(type: Questions) {
   const actions = getActions(type);
@@ -34,13 +34,20 @@ function createBuilderCallback<T>(type: Questions) {
     });
 
     builder.addCase(actions.addQuestion, (state, { payload }) => {
-      const radioQuestion = defaults[type].content;
-      const options = addOptionIds(radioQuestion.options);
-      state[payload.id] = { ...radioQuestion, options };
+      const defaultQuestion = defaults[type].content;
+      const options = addOptionIds(defaultQuestion.options);
+      state[payload.id] = { ...defaultQuestion, options };
     });
 
     builder.addCase(actions.removeQuestion, (state, { payload }) => {
       delete state[payload.id];
+    });
+
+    builder.addCase(actions.initQuestion, (state, { payload }) => {
+      console.log('radio', type, payload);
+      Object.entries(payload).forEach(([key, value]) => {
+        state[key] = value;
+      });
     });
   });
 }
