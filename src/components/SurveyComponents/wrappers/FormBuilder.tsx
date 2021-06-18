@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SurveyDropZone from '../SurveyDropZone';
 
-const FromBuilder = () => (
+const FormBuilder = () => (
   <FormBuilderWrapper>
     <SurveyDropZoneWrapper>
       <SurveyDropZone />
@@ -21,4 +21,4 @@ const FormBuilderWrapper = styled.div`
   flex-basis: 80%;
 `;
 
-export default FromBuilder;
+export default FormBuilder;
