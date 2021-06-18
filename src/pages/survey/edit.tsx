@@ -1,10 +1,8 @@
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Text } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 import React from 'react';
 import { DragDropContext, resetServerContext } from 'react-beautiful-dnd';
-import styled from 'styled-components';
-import QuestionDrawer from '../../components/SurveyComponents/QuestionDrawer';
-import FromBuilder from '../../components/SurveyComponents/wrappers/FormBuilderWrapper';
+import SurveyEditor from '../../components/organisms/SurveyEditor';
 import ScreenWithNav from '../../components/templates/ScreenWithNav';
 import useDrag from '../../lib/hooks/useDrag';
 import useExitPrompt from '../../lib/hooks/useExitPrompts';
@@ -15,25 +13,20 @@ const edit = ({ surveyId }) => {
   const dragHandler = useDrag();
   const { loading, validID } = useSurvey(surveyId);
 
-  console.log(loading);
+  const renderMainBody = () => {
+    if (loading) { return <Spinner />; }
+    if (!validID) { return <Text>Invalid ID</Text>; }
+    return <SurveyEditor />;
+  };
+
   return (
     <DragDropContext onDragEnd={dragHandler}>
       <ScreenWithNav>
-        {loading ? <Spinner /> : (
-          <MainBody>
-            <QuestionDrawer />
-            <FromBuilder />
-          </MainBody>
-        )}
+        {renderMainBody()}
       </ScreenWithNav>
     </DragDropContext>
   );
 };
-
-const MainBody = styled.div`
-  display: flex;
-  height: calc(100vh - 6rem);
-`;
 
 export default edit;
 

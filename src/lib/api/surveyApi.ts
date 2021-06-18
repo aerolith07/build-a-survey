@@ -17,7 +17,7 @@ export const updateSurvey = async (newSurvey:any, id:string) => {
 };
 
 export const publishSurvey = async (publish:boolean, id: string) => {
-  const response = await axios.post(`/survey/publish/${id}}`, {
+  const response = await axios.put(`/survey/publish/${id}`, {
     published: publish,
   }).catch((error) => error.response);
   console.log(response);
@@ -32,6 +32,6 @@ export const getSurveyByUser = async () => {
 
 export const getSurveyById = async (id: string) => {
   const response = await axios.get(`/survey/${id}`).catch((error) => ({ ...error.response, status: false }));
-  console.log(response);
+  console.log(response.data);
   return { ...response.data, status: true };
 };

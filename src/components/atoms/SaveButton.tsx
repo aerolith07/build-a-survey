@@ -42,8 +42,6 @@ const useSaveSurvey = () => {
       return updateSurvey(survey, surveyId);
     })();
 
-    console.log('asdadasda', response);
-
     if (response.status === true) {
       toast({
         position: 'top',

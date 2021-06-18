@@ -6,6 +6,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { setPreview } from '../../state/appState/appReducers';
 import { useAppDispatch, useAppSelector } from '../../state/store';
+import PublishButton from '../atoms/PublishButton';
 import SaveButton from '../atoms/SaveButton';
 
 const SettingsBar = () => {
@@ -29,7 +30,7 @@ const SettingsBar = () => {
           Preview
           <Switch isFocusable={false} id="preview-button" ml="5px" colorScheme="green" isChecked={preview} />
         </Button>
-        <Button size="sm" colorScheme="blue">Theme</Button>
+        <PublishButton />
         <SaveButton />
       </HStack>
     </SettingsWrapper>
