@@ -2,7 +2,7 @@ import {
   Checkbox, SlideFade,
 } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useState } from 'react';
 import EditableLabel from './EditableLabel';
 
 export type EditableCheckboxProps = {
@@ -10,22 +10,36 @@ export type EditableCheckboxProps = {
   id: string,
   editable?: boolean
   setOption: (id: string, value: string) => void
+  setAnswer: (id: string, value: boolean) => void
 }
 
 const EditableCheckbox = ({
-  value, id, editable, setOption,
-}: EditableCheckboxProps) => (
-  <SlideFade offsetY="-40px" in={!!value}>
-    <CheckboxWrapper>
-      <Checkbox id={id} value={value} />
-      <EditableLabel
-        editable={editable}
-        initialValue={value}
-        save={(currentValue) => { setOption(id, currentValue); }}
-      />
-    </CheckboxWrapper>
-  </SlideFade>
-);
+  value, id, editable, setOption, setAnswer,
+}: EditableCheckboxProps) => {
+  const [fieldValue, setFieldValue] = useState(false);
+
+  const updateValue = (newValue: boolean) => {
+    setFieldValue(newValue);
+    setAnswer(id, newValue);
+  };
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    updateValue(Boolean(e.target.value));
+  };
+
+  return (
+    <SlideFade offsetY="-40px" in={!!value}>
+      <CheckboxWrapper>
+        <Checkbox id={id} value={value} onChange={handleChange} isChecked={fieldValue} />
+        <EditableLabel
+          editable={editable}
+          initialValue={value}
+          save={(currentValue) => { setOption(id, currentValue); }}
+        />
+      </CheckboxWrapper>
+    </SlideFade>
+  );
+};
 
 EditableCheckbox.defaultProps = {
   editable: false,

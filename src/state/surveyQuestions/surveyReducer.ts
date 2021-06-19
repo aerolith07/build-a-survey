@@ -1,11 +1,12 @@
-import { combineReducers } from '@reduxjs/toolkit';
-import radioReducer from './radio/radioReducer';
+/* eslint-disable no-param-reassign */
+import { combineReducers, createAction } from '@reduxjs/toolkit';
 import checkboxesReducer from './checkbox/checkboxReducer';
-import orderReducer from './order/orderReducer';
 import inputReducer from './input/inputReducer';
-import titleReducer from './title/titleReducer';
-import subheadingReducer from './subheading/subheadingReducer';
+import orderReducer from './order/orderReducer';
 import { publishReducer } from './published/publishedReducer';
+import radioReducer from './radio/radioReducer';
+import subheadingReducer from './subheading/subheadingReducer';
+import titleReducer from './title/titleReducer';
 
 const surveyReducer = combineReducers({
   questions: combineReducers({
@@ -18,4 +19,14 @@ const surveyReducer = combineReducers({
   order: orderReducer,
   published: publishReducer,
 });
-export default surveyReducer;
+
+export const resetSurvey = createAction('survey/reset');
+
+const rootReducer = (state, action) => {
+  if (action.type === resetSurvey.type) {
+    state = undefined;
+  }
+
+  return surveyReducer(state, action);
+};
+export default rootReducer;

@@ -6,29 +6,37 @@ export type EditableInputProps = {
   id: string,
   editable?: boolean
   setOption: (id: string, value: string) => void
+  setAnswer: (id: string, value: string) => void
 }
 
 const EditableInput = ({
-  value, id, editable, setOption,
+  value, id, editable, setOption, setAnswer,
 }: EditableInputProps) => {
-  const [tempValue, setTempValue] = useState('');
+  const [fieldValue, setFieldValue] = useState('');
+
+  // TODO test this?
+  const updateValue = (newValue: string) => {
+    setFieldValue(newValue);
+    setAnswer(id, newValue);
+  };
+
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (editable) {
       setOption(id, e.target.value);
     } else {
-      setTempValue(e.target.value);
+      updateValue(e.target.value);
     }
   };
 
   useEffect(() => {
-    setTempValue('');
+    updateValue('');
   }, [editable]);
 
   return (
     <Input
       id={id}
       mb="10px"
-      value={editable ? value : tempValue}
+      value={editable ? value : fieldValue}
       placeholder={editable ? 'Enter placeholder text - blank for no placeholder' : value}
       onChange={handleChange}
     />

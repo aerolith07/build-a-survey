@@ -44,7 +44,6 @@ function createBuilderCallback<T>(type: Questions) {
     });
 
     builder.addCase(actions.initQuestion, (state, { payload }) => {
-      console.log('radio', type, payload);
       Object.entries(payload).forEach(([key, value]) => {
         state[key] = value;
       });

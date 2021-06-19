@@ -2,9 +2,13 @@ import { Button, HStack } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
 import styled from 'styled-components';
+import { useAppDispatch } from '../../state/store';
+import { resetAnswers } from '../../state/surveyAnswers/answersReducer';
+import { resetSurvey } from '../../state/surveyQuestions/surveyReducer';
 import ConfirmDialog from '../atoms/ConfirmDialog';
 
 const Header = () => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const logoutHandler = () => {
     // TODO add automatic saving here
@@ -13,6 +17,9 @@ const Header = () => {
 
   const goToMySurveys = () => {
     // TODO add automatic saving here
+    console.log('aaaa');
+    dispatch(resetSurvey());
+    dispatch(resetAnswers());
     router.push('/mySurveys');
   };
 

@@ -15,13 +15,13 @@ const edit = ({ surveyId }) => {
 
   const renderMainBody = () => {
     if (loading) { return <Spinner />; }
-    if (!validID) { return <Text>Invalid ID</Text>; }
+    if (!validID) { return <Text>Unable to find survey. May not be published.</Text>; }
     return <SurveySubmitter />;
   };
 
   return (
     <DragDropContext onDragEnd={dragHandler}>
-      <ScreenWithNav>
+      <ScreenWithNav showSettings={false}>
         {renderMainBody()}
       </ScreenWithNav>
     </DragDropContext>

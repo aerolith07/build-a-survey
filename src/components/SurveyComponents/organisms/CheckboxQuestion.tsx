@@ -7,6 +7,7 @@ import Subheading from '../atoms/Subheading';
 import Title from '../atoms/Title';
 import EditableInputOptions from '../molecules/ChoiceInputGroup';
 import * as actions from '../../../state/surveyQuestions/checkbox/checkboxAction';
+import { setOptionAnswer } from '../../../state/surveyAnswers/answersReducer';
 
 interface CheckboxProps extends PropsFromRedux {
   title: string;
@@ -23,6 +24,7 @@ const CheckboxQuestion = ({
   addOption,
   removeOption,
   setOption,
+  setAnswer,
   title,
   subheading,
   options,
@@ -52,6 +54,7 @@ const CheckboxQuestion = ({
           addOption={() => addOption({ id })}
           removeOption={() => removeOption({ id })}
           setOption={(optionId, value) => setOption({ questionId: id, optionId, value })}
+          setAnswer={(optionId, value) => setAnswer({ questionId: id, optionId, value })}
         />
       )}
     </CheckboxGroup>
@@ -72,6 +75,7 @@ const mapDispatchToProps = {
   addOption: actions.addOption,
   removeOption: actions.removeOption,
   setOption: actions.setOption,
+  setAnswer: setOptionAnswer,
 };
 
 const connector = connect(null, mapDispatchToProps);

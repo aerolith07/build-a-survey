@@ -16,11 +16,12 @@ type ChoiceInputGroupProps<InputTypeProps> = {
   addOption: () => void
   removeOption: (id: string) => void
   setOption: (id: string, value: string) => void
+  setAnswer: (id: string, value: string) => void
   editable: boolean
 }
 
 function ChoiceInputGroup<T>({
-  options, Input, addOption, removeOption, setOption, editable,
+  options, Input, addOption, removeOption, setOption, setAnswer, editable,
 }:
   ChoiceInputGroupProps<T>) {
   const canRemove = options.length > MIN_OPTIONS;
@@ -43,6 +44,7 @@ function ChoiceInputGroup<T>({
             value={value}
             editable={editable}
             setOption={setOption}
+            setAnswer={setAnswer}
           />
         ))}
       </>

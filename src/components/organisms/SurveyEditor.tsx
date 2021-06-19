@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import QuestionDrawer from '../SurveyComponents/QuestionDrawer';
-import FromBuilder from '../SurveyComponents/wrappers/FormBuilderWrapper';
+import FromBuilder from '../SurveyComponents/wrappers/FormBuilder';
 
 const SurveyEditor = () => (
   <MainBody>

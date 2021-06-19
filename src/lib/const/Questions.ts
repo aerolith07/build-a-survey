@@ -6,4 +6,6 @@ enum Questions {
   subheading='subheading'
 }
 
+export const QuestionsWithOptions = [Questions.checkboxes, Questions.radio, Questions.input];
+
 export default Questions;

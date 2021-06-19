@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import appReducer from './appState/appReducers';
+import { answerReducer } from './surveyAnswers/answersReducer';
 import surveyReducer from './surveyQuestions/surveyReducer';
 
 export const store = configureStore({
   reducer: {
     survey: surveyReducer,
     app: appReducer,
+    answers: answerReducer,
   },
 });
 

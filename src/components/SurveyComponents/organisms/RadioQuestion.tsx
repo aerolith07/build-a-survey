@@ -6,6 +6,7 @@ import Subheading from '../atoms/Subheading';
 import Title from '../atoms/Title';
 import EditableInputOptions from '../molecules/ChoiceInputGroup';
 import * as actions from '../../../state/surveyQuestions/radio/radioActions';
+import { setOptionAnswer } from '../../../state/surveyAnswers/answersReducer';
 
 interface RadioButonProps extends PropsFromRedux {
   title: string;
@@ -22,6 +23,7 @@ const RadioQuestion = ({
   addOption,
   removeOption,
   setOption,
+  setAnswer,
   title,
   subheading,
   options,
@@ -51,6 +53,7 @@ const RadioQuestion = ({
           addOption={() => addOption({ id })}
           removeOption={() => removeOption({ id })}
           setOption={(optionId, value) => setOption({ questionId: id, optionId, value })}
+          setAnswer={(optionId, value) => setAnswer({ questionId: id, optionId, value })}
         />
       </RadioGroup>
     )}
@@ -67,6 +70,7 @@ const mapDispatchToProps = {
   addOption: actions.addOption,
   removeOption: actions.removeOption,
   setOption: actions.setOption,
+  setAnswer: setOptionAnswer,
 };
 
 const connector = connect(null, mapDispatchToProps);

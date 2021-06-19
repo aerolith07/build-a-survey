@@ -6,6 +6,7 @@ import EditableSubheading from '../atoms/Subheading';
 import EditableTitle from '../atoms/Title';
 import EditableInputOptions from '../molecules/ChoiceInputGroup';
 import * as actions from '../../../state/surveyQuestions/input/inputActions';
+import { setOptionAnswer } from '../../../state/surveyAnswers/answersReducer';
 
 interface InputQuestionProps extends PropsFromRedux {
   title: string,
@@ -21,6 +22,7 @@ const InputQuestion = ({
   addOption,
   removeOption,
   setOption,
+  setAnswer,
   id,
   editable,
   title,
@@ -28,21 +30,21 @@ const InputQuestion = ({
   options,
 }: InputQuestionProps) => (
   <InputQuestionWrapper>
-    { title && (
+    {title && (
       <EditableTitle
         editable={editable}
         setTitle={(value) => setTitle({ id, value })}
         title={title}
       />
     )}
-    { subheading && (
+    {subheading && (
       <EditableSubheading
         editable={editable}
         setSubheading={(value) => setSubheading({ id, value })}
         subheading={subheading}
       />
     )}
-    { options && (
+    {options && (
       <EditableInputOptions<EditableInputProps>
         editable={editable}
         Input={Input}
@@ -50,6 +52,7 @@ const InputQuestion = ({
         addOption={() => addOption({ id })}
         removeOption={() => removeOption({ id })}
         setOption={(optionId, value) => setOption({ questionId: id, optionId, value })}
+        setAnswer={(optionId, value) => setAnswer({ questionId: id, optionId, value })}
       />
     )}
   </InputQuestionWrapper>
@@ -69,6 +72,7 @@ const mapDispatchToProps = {
   addOption: actions.addOption,
   removeOption: actions.removeOption,
   setOption: actions.setOption,
+  setAnswer: setOptionAnswer,
 };
 
 const connector = connect(null, mapDispatchToProps);
