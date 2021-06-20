@@ -1,4 +1,6 @@
-import { HStack, Tag, Text } from '@chakra-ui/react';
+import {
+  Button, HStack, Tag, Text,
+} from '@chakra-ui/react';
 import { DateTime } from 'luxon';
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
@@ -26,19 +28,25 @@ const SurveyEntry = ({ surveyParams }: SurveyEntryProps) => {
     published,
   } = surveyParams;
 
-  const handleClick = (clickedId: string) => {
+  const handleEdit = (clickedId: string) => {
     router.push(`/survey/edit?id=${clickedId}`);
+  };
+
+  const handleReview = (clickedId: string) => {
+    router.push(`/survey/results?id=${clickedId}`);
   };
 
   return (
 
-    <SurveyEntryWrapper onClick={() => handleClick(id)}>
+    <SurveyEntryWrapper>
       <HStack spacing="10" justifyContent="space-evenly">
         <Text textAlign="left" fontWeight="700">{title}</Text>
         <Text>{id}</Text>
         <Text>{DateTime.fromISO(createdAt).toRelative()}</Text>
         <Text>{DateTime.fromISO(updatedAt).toRelative()}</Text>
         <Tag colorScheme={published ? 'green' : 'red'}>{published ? 'Published' : 'Unpublished'}</Tag>
+        <Button onClick={() => handleEdit(id)} size="sm" colorScheme="blue">Edit</Button>
+        <Button onClick={() => handleReview(id)} size="sm" colorScheme="blue">Results</Button>
       </HStack>
     </SurveyEntryWrapper>
   );

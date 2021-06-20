@@ -4,17 +4,10 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import Components from '../../lib/const/componentMap';
 import defaultQuestions from '../../lib/const/defaultQuestions';
-import { useAppSelector } from '../../state/store';
 import Question from './templates/Question';
 
 const QuestionDrawer = () => {
   const data = Object.entries(defaultQuestions);
-
-  const preview = useAppSelector((state) => state.app.preview);
-
-  if (preview) {
-    return null;
-  }
 
   return (
     <QuestionDrawerWrapper className="question-drawer">

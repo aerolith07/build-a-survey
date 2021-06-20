@@ -5,19 +5,21 @@ import SettingsBar from '../organisms/SettingsBar';
 
 interface ScreenProps {
   showSettings?: boolean,
-  children: ReactNode
+  children: ReactNode,
+  surveyTitle?: string
 }
 
-const Screen: React.FC<ScreenProps> = ({ showSettings, children }: ScreenProps) => (
+const Screen: React.FC<ScreenProps> = ({ showSettings, children, surveyTitle }: ScreenProps) => (
   <ScreenWrapper>
     <Header />
-    {showSettings && <SettingsBar />}
+    {showSettings && <SettingsBar surveyTitle={surveyTitle} />}
     {children}
   </ScreenWrapper>
 );
 
 Screen.defaultProps = {
   showSettings: true,
+  surveyTitle: undefined,
 };
 
 const ScreenWrapper = styled.div`

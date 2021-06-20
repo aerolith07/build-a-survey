@@ -1,4 +1,4 @@
-import { Center, Spinner } from '@chakra-ui/react';
+import { Center, Heading, Spinner } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 import React, { useEffect, useState } from 'react';
 import { resetServerContext } from 'react-beautiful-dnd';
@@ -28,6 +28,7 @@ const mySurveys = () => {
   return (
     <ScreenWithNav showSettings={false}>
       <MainBody>
+        <Heading p="1rem">Surveys</Heading>
         <SurveyListWrapper>
           {!isLoading ? surveyList && surveyList.map((surveyParams) => (
             <SurveyEntry
@@ -49,17 +50,17 @@ const MainBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: auto;
+  /* margin: auto; */
   height: calc(100vh - 4.5rem);
-  background: linear-gradient(40deg, #2f2495 0%, rgba(23,150,240,1) 100%);
+  /* background: linear-gradient(40deg, #2f2495 0%, rgba(23,150,240,1) 100%); */
 `;
 
 const SurveyListWrapper = styled.div`
   align-self: center;
   background: white;
   width: 90%;
-  height: 70%;
-  border: 1px solid #97d4ff4e;
+  height: 100%;
+  /* border: 1px solid #97d4ff4e; */
   border-radius: 10px;
   overflow-x: auto;
 `;

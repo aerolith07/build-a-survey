@@ -11,17 +11,17 @@ import useSurvey from '../../lib/hooks/useSurvey';
 const edit = ({ surveyId }) => {
   useExitPrompt(true);
   const dragHandler = useDrag();
-  const { loading, validID } = useSurvey(surveyId);
+  const { loading, validID, surveyTitle } = useSurvey(surveyId);
 
   const renderMainBody = () => {
     if (loading) { return <Spinner />; }
-    if (!validID) { return <Text>Invalid ID</Text>; }
+    if (!validID && surveyId) { return <Text>Invalid ID</Text>; }
     return <SurveyEditor />;
   };
 
   return (
     <DragDropContext onDragEnd={dragHandler}>
-      <ScreenWithNav>
+      <ScreenWithNav surveyTitle={surveyTitle}>
         {renderMainBody()}
       </ScreenWithNav>
     </DragDropContext>

@@ -50,6 +50,7 @@ const setupAnswers = (questions, order, dispatch) => {
 const useSurvey = (surveyId: string) => {
   const [loading, setLoading] = useState(true);
   const [validID, setValidID] = useState(false);
+  const [surveyTitle, setTitle] = useState('');
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -57,28 +58,30 @@ const useSurvey = (surveyId: string) => {
       if (surveyId) {
         setLoading(true);
         const {
-          questions, order, published, status,
+          questions, order, published, status, title,
         } = await getSurveyById(surveyId);
 
         setLoading(false);
         dispatch(setSurvey(surveyId));
+        setTitle(title);
         if (status && order && questions) {
           setValidID(true);
           dispatch(resetAnswers());
           dispatch(resetSurvey());
-
           setupSurvey(questions, order, published, dispatch);
           setupAnswers(questions, order, dispatch);
         } else {
           setValidID(false);
         }
+      } else {
+        setLoading(false);
       }
     };
 
     getSurveyAsync();
   }, []);
 
-  return { loading, validID };
+  return { loading, validID, surveyTitle };
 };
 
 export default useSurvey;
