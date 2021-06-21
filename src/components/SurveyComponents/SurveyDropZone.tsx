@@ -52,7 +52,7 @@ const renderQuizComponents = (order: any, questions: any, editable: boolean) => 
   </>
 );
 
-const renderDropZone = () => (<DropZone><Heading p="50px" borderRadius="10" w="100%" h="70vh" color="gray.300" justifyContent="center">Drop Components Here</Heading></DropZone>);
+const renderDropZone = () => (<DropZone><Heading p="50px" borderRadius="10" w="100%" h="70vh" color="gray.300" justifyContent="center" textAlign="center">Drop Components Here</Heading></DropZone>);
 
 const SurveyDropZone = () => {
   const { questions, order } = useAppSelector((state) => state.survey);
@@ -74,12 +74,12 @@ const DropZone = styled.div`
   display: flex;
   width:100%;
   height: 100%;
-`;
+  `;
 
 const DroppableArea = styled.div`
   .question {
-    margin-bottom: 10px;
+    margin - bottom: 10px;
   }
-`;
+  `;
 
 export default SurveyDropZone;

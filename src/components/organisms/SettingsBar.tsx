@@ -26,7 +26,7 @@ const SettingsBar = ({ surveyTitle }: SettingsBarProps) => {
   };
 
   const handleShare = () => {
-    navigator.clipboard.writeText(`http://localhost:3001/survey/submit?=${surveyId}`);
+    navigator.clipboard.writeText(`http://localhost:3001/survey/submit?id=${surveyId}`);
     toast({
       position: 'top',
       description: 'Copied survey link to clipboard',

@@ -1,5 +1,8 @@
-import { Center, Heading, Spinner } from '@chakra-ui/react';
+import {
+  Button, Center, Heading, Spinner,
+} from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import { resetServerContext } from 'react-beautiful-dnd';
 import styled from 'styled-components';
@@ -8,6 +11,7 @@ import ScreenWithNav from '../components/templates/ScreenWithNav';
 import { getSurveyByUser } from '../lib/api/surveyApi';
 
 const mySurveys = () => {
+  const router = useRouter();
   const [surveyList, setSurveyList] = useState<any[]>(undefined);
   const [isLoading, setLoading] = useState(false);
 
@@ -23,7 +27,9 @@ const mySurveys = () => {
     getSurveysAsync();
   }, []);
 
-  console.log(surveyList);
+  const handleCreateNew = () => {
+    router.push('/survey/edit/');
+  };
 
   return (
     <ScreenWithNav showSettings={false}>
@@ -41,6 +47,7 @@ const mySurveys = () => {
             </Center>
           )}
         </SurveyListWrapper>
+        <Button m="2rem" p="1rem" colorScheme="green" onClick={handleCreateNew}>Create New</Button>
       </MainBody>
     </ScreenWithNav>
   );
